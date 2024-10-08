@@ -121,44 +121,6 @@ class StudentCrudController extends CrudController
            'type'=> 'select',
            'entity' => 'country'
        ]);
-        // CRUD::addField([
-        //     'name' => 'preferred_days',
-        //     'label' => 'الأيام المفضلة',
-        //     'type' => 'select_from_array',
-        //     'options' => [
-        //         'sunday' => 'الأحد',
-        //         'monday' => 'الإثنين',
-        //         'tuesday' => 'الثلاثاء',
-        //         'wednesday' => 'الأربعاء',
-        //         'thursday' => 'الخميس',
-        //         'friday' => 'الجمعة',
-        //         'saturday' => 'السبت'
-        //     ],
-        //     'store_in' => 'preferred_days', 
-        // ]);
-        // CRUD::addField([
-        //     'name' => 'preferred_times',
-        //     'label' => 'الأوقات المفضلة',
-        //     'type' => 'select_from_array',
-        //     'options' => [
-        //         'morning' => 'الصباح',
-        //         'afternoon' => 'بعد الظهر',
-        //         'evening' => 'المساء'
-        //     ],
-        //     'store_in' => 'preferred_times',
-        // ]);
-
-        // CRUD::addField([
-        //     'name' => 'preferred_courses',
-        //     'label' => 'الكورسات المفضلة',
-        //     'type' => 'select_from_array',
-        //     'options' => [
-        //         'math' => 'الرياضيات',
-        //         'science' => 'العلوم',
-        //         'history' => 'التاريخ',
-        //     ],
-        //     'store_in' => 'preferred_courses', 
-        // ]);
     }
 
     /**

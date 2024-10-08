@@ -73,21 +73,6 @@ class TeacherCrudController extends CrudController
 
         CRUD::field('name')->label('اسم المعلم');
         CRUD::field('specialization')->label('التخصص');
-
-        CRUD::addField([
-            'name' => 'available_times',
-            'label' => 'الأوقات المتاحة',
-            'type' => 'select_from_array',
-            'options' => [
-                'Monday 9:00 - 11:00' => 'Monday 9:00 - 11:00',
-                'Tuesday 10:00 - 12:00' => 'Tuesday 10:00 - 12:00',
-                'Wednesday 1:00 - 3:00' => 'Wednesday 1:00 - 3:00',
-            ],
-            'allows_null' => false,
-            'multiple' => true,
-            'attributes' => ['multiple' => 'multiple'],
-        ]);
-
         CRUD::field('notes')->label('ملاحظات')->type('textarea');
         /**
          * Fields can be defined using the fluent syntax:
