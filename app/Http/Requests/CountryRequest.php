@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use App\Models\Student;
 
-class StudentRequest extends FormRequest
+class CountryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +25,7 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255',
-            'age'=> 'required|min:2|max:3',
-            'phone' => 'required|max:10|unique:students,phone',
-
+            // 'name' => 'required|min:5|max:255'
         ];
     }
 
