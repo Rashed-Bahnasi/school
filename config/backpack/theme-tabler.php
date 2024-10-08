@@ -22,7 +22,7 @@ return [
      * Possible values: horizontal, horizontal_dark, horizontal_overlap, vertical,
      * vertical_dark, vertical_transparent (legacy theme), right_vertical, right_vertical_dark, right_vertical_transparent
      */
-    'layout' => 'horizontal_overlap',
+    'layout' => 'horizontal',
 
     /**
      * Pick a login page layout.
@@ -62,20 +62,20 @@ return [
         /**
          * The color mode used by default.
          */
-        'defaultColorMode' => 'system', // system, light, dark
+        'defaultColorMode' => 'light', // system, light, dark
 
         /**
          * When true, a switch is displayed to let admins choose their favorite theme mode.
          * When false, the theme will only use the "defaultColorMode" set above.
          * In case "defaultColorMode" is null, system is the default.
          */
-        'showColorModeSwitcher' => true,
+        'showColorModeSwitcher' => false,
 
         /**
          * Fix the top-header component (present in "vertical_transparent") and the menu when the layout type is set as "horizontal".
          * This value is skipped when the layout type is horizontal-overlap, using false as default.
          */
-        'useStickyHeader' => false,
+        'useStickyHeader' => true,
 
         /**
          * When true, the content area will take the whole screen width.
@@ -85,7 +85,7 @@ return [
         /**
          * When true, the sidebar content for vertical layouts will not scroll with the rest of the content.
          */
-        'sidebarFixed' => false,
+        'sidebarFixed' => true,
 
         /**
          * When true, horizontal layouts will display the classic top bar on top to free some space when multiple nav items are used.
@@ -95,7 +95,7 @@ return [
         /**
          * When true, the password input will have a toggle button to show/hide the password.
          */
-        'showPasswordVisibilityToggler' => false,
+        'showPasswordVisibilityToggler' => true,
     ],
 
     /**
