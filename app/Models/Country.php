@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Country;
+use App\Models\Student;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Country extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -18,11 +18,11 @@ class Student extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'students';
+    protected $table = 'countries';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = [];
+    // protected $fillable = [];
     // protected $hidden = [];
 
     /*
@@ -31,43 +31,13 @@ class Student extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function setPreferredDaysAttribute($value)
-    {
-        $this->attributes['preferred_days'] = json_encode($value);
-    }
-
-    public function getPreferredDaysAttribute($value)
-    {
-        return json_decode($value, true);
-    }
-    public function setPreferredTimesAttribute($value)
-    {
-        $this->attributes['preferred_times'] = json_encode($value);
-    }
-
-    public function setPreferredCoursesAttribute($value)
-    {
-        $this->attributes['preferred_courses'] = json_encode($value);
-    }
-
-    // لفك ترميز JSON عند الاسترجاع
-    public function getPreferredTimesAttribute($value)
-    {
-        return json_decode($value, true);
-    }
-
-    public function getPreferredCoursesAttribute($value)
-    {
-        return json_decode($value, true);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function country(){
-        return $this->belongsTo(Country::class);
+    public function student(){
+        return $this->hasMany(Student::class);
     }
     /*
     |--------------------------------------------------------------------------

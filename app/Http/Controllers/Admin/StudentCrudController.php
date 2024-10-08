@@ -62,6 +62,13 @@ class StudentCrudController extends CrudController
             'label' => 'العمر'
         ]);
         CRUD::addColumn([
+            'name'=>'country_id',
+           'label'=> 'البلد',
+           'attribute'=>'name',
+           'type'=> 'select',
+           'entity' => 'country'
+        ]);
+        CRUD::addColumn([
             'name' => 'status',
             'type'=> 'text',
             'label' => 'الحالة'
@@ -107,11 +114,13 @@ class StudentCrudController extends CrudController
             'allows_null' => false, 
             'default' => 'inactive',
         ]);
-        // CRUD::addField([
-        //     'name' => 'country',
-        //     'type'=> 'text',
-        //     'label' => 'البلد'
-        // ]);
+        CRUD::addField([
+           'name'=>'country_id',
+           'label'=> 'البلد',
+           'attribute'=>'name',
+           'type'=> 'select',
+           'entity' => 'country'
+       ]);
         // CRUD::addField([
         //     'name' => 'preferred_days',
         //     'label' => 'الأيام المفضلة',
@@ -161,5 +170,9 @@ class StudentCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
     }
 }
