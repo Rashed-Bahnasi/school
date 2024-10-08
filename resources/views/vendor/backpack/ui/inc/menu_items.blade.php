@@ -6,3 +6,6 @@
 <x-backpack::menu-item title="Courses" icon="la la-question" :link="backpack_url('course')" />
 <x-backpack::menu-item title="Students" icon="las la-user-graduate" :link="backpack_url('student')" />
 <x-backpack::menu-item title="Countries" icon="las la-flag" :link="backpack_url('country')" />
+
+<x-backpack::menu-item title="Days" icon="la la-question" :link="backpack_url('day')" />
+<x-backpack::menu-item title="Times" icon="la la-question" :link="backpack_url('time')" />

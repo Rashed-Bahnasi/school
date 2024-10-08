@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CourseRequest;
+use App\Http\Requests\DayRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CourseCrudController
+ * Class DayCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CourseCrudController extends CrudController
+class DayCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class CourseCrudController extends CrudController
      */
     public function setup()
     {
-         $this->crud->setModel(Course::class);
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/course');
-        $this->crud->setEntityNameStrings('course', 'courses');
+        CRUD::setModel(\App\Models\Day::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/day');
+        CRUD::setEntityNameStrings('day', 'days');
     }
 
     /**
@@ -39,12 +39,11 @@ class CourseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'اليوم'
+        ]);
     }
 
     /**
@@ -55,13 +54,11 @@ class CourseCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CourseRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
-
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
+        CRUD::addField([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'اليوم'
+        ]);
     }
 
     /**

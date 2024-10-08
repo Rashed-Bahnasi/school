@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Country;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Day extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -18,11 +17,11 @@ class Student extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'students';
+    protected $table = 'days';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = [];
+    // protected $fillable = [];
     // protected $hidden = [];
 
     /*
@@ -36,14 +35,8 @@ class Student extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function country(){
-        return $this->belongsTo(Country::class);
-    }
-    public function time(){
-        return $this->hasMany(Time::class);
-    }
-    public function day(){
-        return $this->hasMany(Day::class);
+    public function student(){
+        return $this->belongsTo(Student::class);
     }
     /*
     |--------------------------------------------------------------------------
