@@ -9,3 +9,4 @@
 <x-backpack::menu-item title="Courses" icon="las la-chalkboard" :link="backpack_url('course')" />
 <x-backpack::menu-item title="Countries" icon="las la-flag" :link="backpack_url('country')" />
 <x-backpack::menu-item title="Days" icon="las la-calendar-day" :link="backpack_url('day')" />
+<x-backpack::menu-item title="Subjects" icon="la la-question" :link="backpack_url('subject')" />

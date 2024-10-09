@@ -11,10 +11,23 @@ class Course extends Model
     use CrudTrait;
     use HasFactory;
 
-    protected $fillable = ['name', 'teacher_id'];
+    protected $table = 'courses';
+    // protected $primaryKey = 'id';
+    // public $timestamps = false;
+    protected $guarded = ['id'];
+    // protected $fillable = [];
+    // protected $hidden = [];
 
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
     }
 }

@@ -24,6 +24,7 @@ Route::group([
     Route::crud('day', 'DayCrudController');
     Route::crud('time', 'TimeCrudController');
     Route::crud('perfect-time', 'PerfectTimeCrudController');
+    Route::crud('subject', 'SubjectCrudController');
 }); // this should be the absolute last line of this file
 
 /**
