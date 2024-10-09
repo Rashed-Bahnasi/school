@@ -26,7 +26,7 @@ class CourseCrudController extends CrudController
      */
     public function setup()
     {
-         $this->crud->setModel(Course::class);
+         $this->crud->setModel(\App\Models\Course::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/course');
         $this->crud->setEntityNameStrings('course', 'courses');
     }
@@ -39,12 +39,72 @@ class CourseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'الاسم'
+        ]);
+        CRUD::addColumn([
+            'name' => 'type',
+            'type'=> 'text',
+            'label' => 'النوع'
+        ]);
+        CRUD::addColumn([
+            'name' => 'number_of_lessons',
+            'type'=> 'text',
+            'label' => 'عدد جلسات الكورس'
+        ]);
+        CRUD::addColumn([
+            'name' => 'start_time',
+            'type'=> 'text',
+            'label' => 'وقت البدء'
+        ]);
+        CRUD::addColumn([
+            'name' => 'end_time',
+            'type'=> 'text',
+            'label' => 'وقت الانتهاء'
+        ]);
+        CRUD::addColumn([
+            'name' => 'max_number_of_students',
+            'type'=> 'text',
+            'label' => 'اكثر عدد طلاب ممكن'
+        ]);
+        CRUD::addColumn([
+            'name' => 'min_number_of_students',
+            'type'=> 'text',
+            'label' => 'اقل عدد طلاب ممكن'
+        ]);
+        CRUD::addColumn([
+            'name' => 'status',
+            'type'=> 'text',
+            'label' => 'الحالة'
+        ]);
+        CRUD::addColumn([
+            'name' => 'course_duration',
+            'type'=> 'text',
+            'label' => 'مدة الكورس'
+        ]);
+        CRUD::addColumn([
+            'name'=>'teacher_id',
+            'label'=> 'الاستاذ',
+            'attribute'=>'name',
+            'type'=> 'select',
+            'entity' => 'teacher'
+        ]);
+        CRUD::addColumn([
+            'name'=>'student_id',
+            'label'=> 'الطلاب',
+            'attribute'=>'name',
+            'type'=> 'select',
+            'entity' => 'student'
+        ]);
+        CRUD::addColumn([
+            'name'=>'subject_id',
+            'label'=> 'المادة',
+            'attribute'=>'name',
+            'type'=> 'select',
+            'entity' => 'subject'
+        ]);
     }
 
     /**
@@ -56,12 +116,105 @@ class CourseCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CourseRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
 
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
+        CRUD::addField([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'الاسم'
+        ]);
+        $this->crud->addField([
+            'name' => 'status',
+            'label' => 'الحالة',
+            'type' => 'select_from_array', 
+            'options' => [
+                'active' => 'فعال',
+                'inactive' => 'متوقف',
+                'completed' => 'منتهي',
+            ], 
+            'allows_null' => false, 
+            'default' => 'active',
+        ]);
+        $this->crud->addField([
+            'name' => 'type', 
+            'label' => 'النوع',
+            'type' => 'select_from_array',
+            'options' => [
+                'public' => 'عام',
+                'private' => 'خاص',
+            ],
+            'allows_null' => false,
+            'default' => 'public',
+        ]);
+        CRUD::addField([
+            'name' => 'number_of_lessons',
+            'type' => 'number',
+            'label' => 'عدد الدروس',
+            'attributes' => [
+                'min' => 1,
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'start_time',
+            'type'=> 'time',
+            'label' => 'وقت البدء'
+        ]);
+        CRUD::addField([
+            'name' => 'end_time',
+            'type'=> 'time',
+            'label' => 'وقت الانتهاء'
+        ]);
+        CRUD::addField([
+            'name' => 'max_number_of_students',
+            'type'=> 'number',
+            'label' => 'أقصى عدد طلاب ممكن',
+            'attributes' => [
+                'min' => 3,
+                'step' => 1, 
+            ],
+            'suffix' => 'طلاب', 
+        ]);
+        
+        CRUD::addField([
+            'name' => 'min_number_of_students',
+            'type'=> 'number', 
+            'label' => 'أقل عدد طلاب ممكن',
+            'attributes' => [
+                'min' => 1,
+                'step' => 1,
+            ],
+            'suffix' => 'طلاب',
+        ]);
+        $this->crud->addField([
+            'name' => 'course_duration',
+            'label' => 'مدة الكورس',
+            'type' => 'number',
+            'attributes' => [
+                'min' => 1,
+                'step' => 1,
+            ],
+            'suffix' => 'minuets',
+        ]);
+        CRUD::addField([
+           'name'=>'teacher_id',
+            'label'=> 'الاستاذ',
+            'attribute'=>'name',
+            'type'=> 'select',
+            'entity' => 'teacher'
+       ]);
+       CRUD::addField([
+        'name'=>'student_id',
+         'label'=> 'الطالب',
+         'attribute'=>'name',
+         'type'=> 'select',
+         'entity' => 'student'
+    ]);
+    CRUD::addField([
+        'name'=>'subject_id',
+         'label'=> 'المادة',
+         'attribute'=>'name',
+         'type'=> 'select',
+         'entity' => 'subject'
+    ]);
     }
 
     /**
