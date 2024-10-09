@@ -71,4 +71,8 @@ class DayCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
+    }
 }

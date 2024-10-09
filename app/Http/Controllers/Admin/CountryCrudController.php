@@ -71,4 +71,8 @@ class CountryCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
+    }
 }
