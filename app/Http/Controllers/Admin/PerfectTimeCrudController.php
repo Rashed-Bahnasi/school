@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Time;
-use App\Http\Requests\TimeRequest;
+use App\Http\Requests\PerfectTimeRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class TimeCrudController
+ * Class PerfectTimeCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class TimeCrudController extends CrudController
+class PerfectTimeCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -27,9 +26,9 @@ class TimeCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Time::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/time');
-        CRUD::setEntityNameStrings('time', 'times');
+        CRUD::setModel(\App\Models\PerfectTime::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/perfect-time');
+        CRUD::setEntityNameStrings('perfect time', 'perfect times');
     }
 
     /**
@@ -51,11 +50,11 @@ class TimeCrudController extends CrudController
             'type' => 'text',
         ]);
         CRUD::addColumn([
-            'name'=>'teacher_id',
-            'label'=> 'الاستاذ',
+            'name'=>'student_id',
+            'label'=> 'الطالب',
             'attribute'=>'name',
             'type'=> 'select',
-            'entity' => 'teacher'
+            'entity' => 'student'
         ]);
         CRUD::addColumn([
             'name'=>'day_id',
@@ -85,11 +84,11 @@ class TimeCrudController extends CrudController
             'type' => 'time',
         ]);
         CRUD::addField([
-            'name'=>'teacher_id',
-            'label'=> 'الاستاذ',
+            'name'=>'student_id',
+            'label'=> 'الطالب',
             'attribute'=>'name',
             'type'=> 'select',
-            'entity' => 'teacher'
+            'entity' => 'student'
         ]);
         CRUD::addField([
             'name'=>'day_id',
