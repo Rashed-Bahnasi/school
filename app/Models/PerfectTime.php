@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Time extends Model
+class PerfectTime extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -17,7 +17,7 @@ class Time extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'times';
+    protected $table = 'perfect_times';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -35,8 +35,8 @@ class Time extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function teacher(){
-        return $this->belongsTo(Teacher::class);
+    public function student(){
+        return $this->belongsTo(Student::class);
     }
     public function day(){
         return $this->belongsTo(Day::class);

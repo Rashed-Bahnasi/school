@@ -23,6 +23,7 @@ Route::group([
     Route::crud('country', 'CountryCrudController');
     Route::crud('day', 'DayCrudController');
     Route::crud('time', 'TimeCrudController');
+    Route::crud('perfect-time', 'PerfectTimeCrudController');
 }); // this should be the absolute last line of this file
 
 /**
