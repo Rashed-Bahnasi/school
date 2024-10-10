@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CourseRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Models\Student;
 
 /**
  * Class CourseCrudController
@@ -96,7 +97,7 @@ class CourseCrudController extends CrudController
             'label'=> 'الطلاب',
             'attribute'=>'name',
             'type'=> 'select',
-            'entity' => 'student'
+            'entity' => 'students'
         ]);
         CRUD::addColumn([
             'name'=>'subject_id',
@@ -202,19 +203,21 @@ class CourseCrudController extends CrudController
             'entity' => 'teacher'
        ]);
        CRUD::addField([
-        'name'=>'student_id',
-         'label'=> 'الطالب',
-         'attribute'=>'name',
-         'type'=> 'select',
-         'entity' => 'student'
-    ]);
-    CRUD::addField([
-        'name'=>'subject_id',
-         'label'=> 'المادة',
-         'attribute'=>'name',
-         'type'=> 'select',
-         'entity' => 'subject'
-    ]);
+            'name' => 'students',
+            'label' => 'الطلاب',
+            'type' => 'select_multiple',
+            'entity' => 'students', 
+            'attribute' => 'name', 
+            'model' => Student::class, 
+            'pivot' => true,
+        ]);
+        CRUD::addField([
+            'name'=>'subject_id',
+            'label'=> 'المادة',
+            'attribute'=>'name',
+            'type'=> 'select',
+            'entity' => 'subject'
+        ]);
     }
 
     /**

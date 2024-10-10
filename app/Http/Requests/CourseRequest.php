@@ -34,9 +34,9 @@ class CourseRequest extends FormRequest
             'max_number_of_students' => 'required|integer|min:3',
             'min_number_of_students' => 'required|integer|min:1',
             'course_duration' => 'required|integer|min:1',
-            'teacher_id' => 'required|exists:teachers,id',
-            'student_id' => 'required|exists:students,id',
-            'subject_id' => 'required|exists:subjects,id',
+            'teacher_id' => 'required|',
+            'students' => 'required|array',
+            'subject_id' => 'required|',
         ];
     }
 
