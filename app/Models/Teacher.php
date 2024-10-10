@@ -18,7 +18,6 @@ class Teacher extends Model
     ];
 
 
-    // علاقة مع جدول الدورات
     public function courses()
     {
         return $this->hasMany(Course::class);

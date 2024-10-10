@@ -45,6 +45,10 @@ class Student extends Model
     public function day(){
         return $this->hasMany(Day::class);
     }
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_student');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

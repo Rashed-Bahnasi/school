@@ -136,5 +136,14 @@ class StudentCrudController extends CrudController
     protected function setupShowOperation()
     {
         $this->setupListOperation();
-    }
+        $this->crud->addColumn([
+        'name' => 'courses', 
+            'label' => 'الكورسات', 
+            'type' => 'select', 
+            'entity' => 'courses', 
+            'attribute' => 'name', 
+            'model' => 'App\Models\Course',
+            'pivot' => false,
+        ]);
+    }   
 }

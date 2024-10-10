@@ -22,9 +22,9 @@ class Course extends Model
     {
         return $this->belongsTo(Teacher::class);
     }
-    public function student()
+    public function students()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsToMany(Student::class, 'course_student');
     }
     public function subject()
     {
