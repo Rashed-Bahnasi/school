@@ -10,3 +10,5 @@
 <x-backpack::menu-item title="Countries" icon="las la-flag" :link="backpack_url('country')" />
 <x-backpack::menu-item title="Days" icon="las la-calendar-day" :link="backpack_url('day')" />
 <x-backpack::menu-item title="Subjects" icon="la la-question" :link="backpack_url('subject')" />
+<x-backpack::menu-item title="Employees" icon="la la-question" :link="backpack_url('employee')" />
+<x-backpack::menu-item title="Tasks" icon="la la-question" :link="backpack_url('task')" />
