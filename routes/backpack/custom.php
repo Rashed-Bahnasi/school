@@ -18,6 +18,7 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('teacher', 'TeacherCrudController');
     Route::crud('course', 'CourseCrudController');
+    Route::get('dashboard', 'DashboardController@dashboard')->name('backpack.dashboard');
 
     Route::crud('student', 'StudentCrudController');
     Route::crud('country', 'CountryCrudController');
