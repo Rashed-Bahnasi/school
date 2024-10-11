@@ -63,7 +63,7 @@ class CourseRequest extends FormRequest
             'name.required' => 'الاسم مطلوب.',
             'status.required' => 'الحالة مطلوبة.',
             'type.required' => 'النوع مطلوب.',
-            'number_of_lessons.required' => 'عدد الدروس مطلوب.',
+            'number_of_lessons.required|min:0' => 'عدد الدروس مطلوب.',
             'start_time.required' => 'وقت البدء مطلوب.',
             'end_time.required' => 'وقت الانتهاء مطلوب.',
             'end_time.after' => 'يجب أن يكون وقت الانتهاء بعد وقت البدء.',

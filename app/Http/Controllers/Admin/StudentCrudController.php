@@ -102,6 +102,13 @@ class StudentCrudController extends CrudController
             'label' => 'العمر'
         ]);
         CRUD::addField([
+            'name'=>'country_id',
+            'label'=> 'البلد',
+            'attribute'=>'name',
+            'type'=> 'select',
+            'entity' => 'country'
+        ]);
+        CRUD::addField([
             'name' => 'status',
             'label' => 'حالة الطالب',
             'type' => 'select_from_array',
@@ -115,12 +122,25 @@ class StudentCrudController extends CrudController
             'default' => 'inactive',
         ]);
         CRUD::addField([
-           'name'=>'country_id',
-           'label'=> 'البلد',
-           'attribute'=>'name',
-           'type'=> 'select',
-           'entity' => 'country'
-       ]);
+            'name' => 'stop_date',
+            'label' => 'تاريخ التوقف',
+            'type' => 'date',
+            'wrapper' => ['class' => 'form-group col-md-6'],
+        ]);
+        
+        CRUD::addField([
+            'name' => 'stop_reason',
+            'label' => 'سبب التوقف',
+            'type' => 'textarea',
+            'wrapper' => ['class' => 'form-group col-md-6'],
+        ]);
+        
+        CRUD::addField([
+            'name' => 'expected_return_date',
+            'label' => 'تاريخ العودة المتوقع',
+            'type' => 'date',
+            'wrapper' => ['class' => 'form-group col-md-6'],
+        ]);
     }
 
     /**
@@ -144,6 +164,26 @@ class StudentCrudController extends CrudController
             'attribute' => 'name', 
             'model' => 'App\Models\Course',
             'pivot' => false,
+        ]);
+        CRUD::addColumn([
+            'name' => 'stop_date',
+            'label' => 'تاريخ التوقف',
+            'type' => 'date',
+            'wrapper' => ['class' => 'form-group col-md-6'],
+        ]);
+        
+        CRUD::addColumn([
+            'name' => 'stop_reason',
+            'label' => 'سبب التوقف',
+            'type' => 'textarea',
+            'wrapper' => ['class' => 'form-group col-md-6'],
+        ]);
+        
+        CRUD::addColumn([
+            'name' => 'expected_return_date',
+            'label' => 'تاريخ العودة المتوقع',
+            'type' => 'date',
+            'wrapper' => ['class' => 'form-group col-md-6'],
         ]);
     }   
 }
