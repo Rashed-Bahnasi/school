@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\EmployeeRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class EmployeeCrudController
@@ -39,12 +40,52 @@ class EmployeeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        //CRUD::setFromDb();
+        CRUD::addColumn([
+            'name' => 'name',
+            'label' => 'الاسم',
+            'type' => 'text',
+        ]);
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'contact_number',
+            'label' => 'رقم التواصل',
+            'type' => 'text',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'email',
+            'label' => 'البريد الإلكتروني',
+            'type' => 'email',
+        ]);
+        CRUD::addColumn([
+            'name' => 'working_hours',
+            'label' => 'ساعات العمل',
+            'type' => 'number',
+            'suffix' => 'ساعات'
+        ]);
+        CRUD::addColumn([
+            'name' => 'role',
+            'type' => 'select_from_array',
+            'label' => 'الدور',
+            'options' => [
+                'manager' => 'مدير',
+                'supervisor' => 'مشرف',
+                'admin_staff' => 'موظف إداري',
+            ],
+            'allows_null' => false,
+            'default' => 'admin_staff',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'permissions',
+            'type' => 'checklist',
+            'label' => 'الصلاحيات',
+            'entity' => 'permissions', // العلاقة في الموديل
+            'attribute' => 'name', // الحقل الذي تريد عرضه
+            'model' => \Spatie\Permission\Models\Permission::class, // نموذج الصلاحيات
+            'pivot' => true, // لتفعيل الجدول الوسيط
+        ]);
     }
 
     /**
@@ -56,6 +97,8 @@ class EmployeeCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(EmployeeRequest::class);
+        $request = $this->crud->getRequest();
+
         CRUD::addField([
             'name' => 'name',
             'label' => 'الاسم',
@@ -72,6 +115,11 @@ class EmployeeCrudController extends CrudController
             'name' => 'email',
             'label' => 'البريد الإلكتروني',
             'type' => 'email',
+        ]);
+        CRUD::addField([
+            'name' => 'password',
+            'label' => 'كلمة المرور',
+            'type' => 'password',
         ]);
         CRUD::addField([
             'name' => 'working_hours',
@@ -101,6 +149,10 @@ class EmployeeCrudController extends CrudController
             'model' => \Spatie\Permission\Models\Permission::class, // نموذج الصلاحيات
             'pivot' => true, // لتفعيل الجدول الوسيط
         ]);
+        
+        if ($request->has('password')) {
+            $request->request->set('password', Hash::make($request->input('password')));
+        }
     }
 
     /**
@@ -112,5 +164,12 @@ class EmployeeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
+        $request = $this->crud->getRequest();
+        if ($request->has('password') && $request->input('password') !== '') {
+            // تشفير كلمة المرور فقط إذا تم إدخال كلمة مرور جديدة
+            $request->request->set('password', Hash::make($request->input('password')));
+        } else {
+            // إزالة كلمة المرور من الطلب إذا لم يتم إدخال كلمة مرور جديدة
+            $request->request->remove('password');
+        }    }
 }
