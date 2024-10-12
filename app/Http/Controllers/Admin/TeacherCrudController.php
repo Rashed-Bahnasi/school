@@ -39,21 +39,44 @@ class TeacherCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-
-
-        CRUD::column('name')->label('اسم المعلم');
-        CRUD::column('specialization')->label('التخصص');
-        CRUD::column('available_times')->label('الأوقات المتاحة');
-        CRUD::column('notes')->label('ملاحظات');
-
-
         CRUD::addColumn([
-            'name' => 'courses',
-            'label' => 'الدورات',
-            'type' => 'relationship',
-            'entity' => 'courses',
-            'attribute' => 'name',
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'الاسم'
         ]);
+        CRUD::addColumn([
+            'name' => 'notes',
+            'type'=> 'textarea',
+            'label' => 'ملاحظات'
+        ]);
+        CRUD::addColumn([
+            'name' => 'courses', 
+            'label' => 'الكورسات', 
+            'type' => 'select', 
+            'entity' => 'courses', 
+            'attribute' => 'name', 
+            'model' => 'App\Models\Course',
+            'pivot' => false,
+        ]);
+        CRUD::addColumn([
+            'name' => 'start_time', 
+            'label' => 'وقت البداية',
+            'type' => 'select', 
+            'entity' => 'times', 
+            'attribute' => 'start_time', 
+            'model' => 'App\Models\Time',
+            'pivot' => false,
+        ]);
+        CRUD::addColumn([
+            'name' => 'end_time', 
+            'label' => 'وقت النهاية',
+            'type' => 'select', 
+            'entity' => 'times', 
+            'attribute' => 'end_time', 
+            'model' => 'App\Models\Time',
+            'pivot' => false,
+        ]);
+       
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -71,9 +94,24 @@ class TeacherCrudController extends CrudController
     {
         CRUD::setValidation(TeacherRequest::class);
 
-        CRUD::field('name')->label('اسم المعلم');
-        CRUD::field('specialization')->label('التخصص');
-        CRUD::field('notes')->label('ملاحظات')->type('textarea');
+        CRUD::addField([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'الاسم'
+        ]);
+        CRUD::addField([
+            'name' => 'notes',
+            'type'=> 'textarea',
+            'label' => 'ملاحظات'
+        ]);
+        CRUD::addField([
+            'name'=>'specialization_id',
+             'label'=> 'التخصصات',
+             'attribute'=>'name',
+             'type'=> 'select',
+             'entity' => 'specializations'
+        ]);
+        
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');

@@ -13,13 +13,17 @@ class Teacher extends Model
 
     protected $fillable = ['name', 'specialization', 'available_times', 'notes'];
 
-    protected $casts = [
-        'available_times' => 'array',
-    ];
-
 
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+    public function specializations()
+    {
+        return $this->hasMany(Specialization::class);
+    }
+    public function times()
+    {
+        return $this->hasMany(Time::class);
     }
 }

@@ -26,3 +26,4 @@
                 <x-backpack::menu-dropdown-item title="Tasks" icon="la la-question" :link="backpack_url('task')" />
         </x-theme-tabler::menu-dropdown-column>
 </x-backpack::menu-dropdown>
+<x-backpack::menu-item title="Specializations" icon="la la-question" :link="backpack_url('specialization')" />
