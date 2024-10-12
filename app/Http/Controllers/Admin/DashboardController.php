@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; // تأكد من استيراد الـ Controller بشكل صحيح
+use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
@@ -15,50 +15,34 @@ class DashboardController extends Controller
     public function dashboard()
     {
 
-        if (backpack_user()->is_admin){
-
-            $this->adminWidgets();
-        }
-
+            Widget::add(['type' => 'div', 'class' => 'row', 'content' => [
+                [
+                    'type'        => 'progress',
+                    'class'       => 'col-sm-6 my-4',
+                    'value'       => Student::count(),
+                    'description' => 'عدد الطلاب',
+                    'progressClass' => 'progress-bar bg-primary',
+                    'hint'        => 'عدد الطلاب المسجلين.',
+                ],
+                [
+                    'type'        => 'progress',
+                    'class'       => 'col-sm-6 my-4',
+                    'value'       => Teacher::count(), 
+                    'description' => 'عدد الأساتذة',
+                    'progressClass' => 'progress-bar bg-primary',
+                    'hint'        => 'عدد الأساتذة المسجلين.',
+                ],
+                [
+                    'type'        => 'progress',
+                    'class'       => 'col-sm-6 my-4',
+                    'value'       => Course::count(),
+                    'description' => 'عدد الكورسات',
+                    'progressClass' => 'progress-bar bg-primary',
+                    'hint'        => 'عدد الكورسات المتاحة.',
+                ]
+        
+            ],
+        ]);
         return View::make('dashboard')->render();
-    }
-    /**
-     * Redirect to the dashboard.
-     *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
-     */
-    public function redirect()
-    {
-        return redirect(backpack_url('dashboard'));
-    }
-
-    protected function adminWidgets(): void
-    {
-        Widget::add([
-            'type'        => 'progress',
-            'class'       => 'card text-white bg-primary mb-2',
-            'value'       => Student::count(),
-            'description' => 'عدد الطلاب',
-            'progress'    => 75, 
-            'hint'        => 'عدد الطلاب المسجلين.',
-        ])->name('numberOfStudents')->to('before_content'); // إضافة الاسم
-
-        Widget::add([
-            'type'        => 'progress',
-            'class'       => 'card text-white bg-success mb-2',
-            'value'       => Teacher::count(), 
-            'description' => 'عدد الأساتذة',
-            'progress'    => 50,
-            'hint'        => 'عدد الأساتذة المسجلين.',
-        ])->name('numberOfTeachers')->to('before_content'); // إضافة الاسم
-
-        Widget::add([
-            'type'        => 'progress',
-            'class'       => 'card text-white bg-info mb-2',
-            'value'       => Course::count(),
-            'description' => 'عدد الكورسات',
-            'progress'    => 30,
-            'hint'        => 'عدد الكورسات المتاحة.',
-        ])->name('numberOfCourses')->to('before_content');
     }
 }
