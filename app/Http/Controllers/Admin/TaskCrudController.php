@@ -39,12 +39,30 @@ class TaskCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'اسم المهمة'
+        ]);
+        CRUD::addColumn([
+            'name' => 'assigned_employee_id',
+            'type' => 'select',
+            'label' => 'الموظف المسؤول',
+            'entity' => 'employee',
+            'model' => "App\Models\Employee",
+            'attribute' => 'name'
+        ]);
+        CRUD::addColumn([
+            'name' => 'due_date',
+            'type' => 'date',
+            'label' => 'تاريخ الانتهاء'
+        ]);
+        CRUD::addField([
+            'name' => 'status',
+            'type' => 'select_from_array',
+            'options' => ['new' => 'جديدة', 'in_progress' => 'قيد العمل', 'pending' => 'معلقة', 'completed' => 'منتهية'],
+            'label' => 'حالة المهمة'
+        ]);
     }
 
     /**
