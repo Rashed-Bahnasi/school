@@ -39,7 +39,28 @@ class SubjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
+
+        CRUD::addColumn([
+            'name' => 'id',
+            'type' => 'text',
+            'label' => '#'
+        ]);
+        CRUD::addColumn([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'الاسم'
+        ]);
+        CRUD::addColumn([
+            'name' => 'level',
+            'type' => 'text',
+            'label' => 'المستوى'
+        ]);
+        CRUD::addColumn([
+            'name' => 'stage',
+            'type' => 'text',
+            'label' => 'المرحلة'
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,8 +77,23 @@ class SubjectCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SubjectRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // CRUD::setFromDb(); // set fields from db columns.
 
+        CRUD::addField([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'الاسم'
+        ]);
+        CRUD::addField([
+            'name' => 'level',
+            'type' => 'number',
+            'label' => "المستوى"
+        ]);
+        CRUD::addField([
+            'name' => 'stage',
+            'type' => 'text',
+            'label' => 'المرحلة'
+        ]);
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
