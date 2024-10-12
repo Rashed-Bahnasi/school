@@ -74,6 +74,8 @@ class TimeCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        CRUD::setValidation(TimeRequest::class);
+
         CRUD::addField([
             'name' => 'start_time',
             'label' =>'وقت البداية',
