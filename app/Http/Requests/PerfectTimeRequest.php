@@ -37,7 +37,10 @@ class PerfectTimeRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'start_time' => 'required|date_format:H:i',
+            'end_time'   => 'required|date_format:H:i|after:start_time', 
+            'student_id' => 'required|', 
+            'day_id'     => 'required|',
         ];
     }
 
@@ -49,7 +52,13 @@ class PerfectTimeRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'start_time.required' => 'يرجى إدخال وقت البداية',
+            'start_time.date_format' => 'يجب أن يكون وقت البداية بصيغة صحيحة (ساعة:دقيقة)',
+            'end_time.required' => 'يرجى إدخال وقت الإنتهاء',
+            'end_time.date_format' => 'يجب أن يكون وقت النهاية بصيغة صحيحة (ساعة:دقيقة)',
+            'end_time.after' => 'يجب أن يكون وقت الإنتهاء بعد وقت البداية',
+            'student_id.required' => 'يرجى اختيار الطالب',
+            'day_id.required' => 'يرجى اختيار اليوم',
         ];
     }
 }

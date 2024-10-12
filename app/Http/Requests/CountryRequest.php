@@ -37,7 +37,7 @@ class CountryRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'name' => 'required|min:5|max:255|exists:countries,name'
         ];
     }
 
@@ -49,7 +49,7 @@ class CountryRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required' => 'الاسم مطلوب.',
         ];
     }
 }

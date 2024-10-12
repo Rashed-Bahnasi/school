@@ -25,7 +25,10 @@ class TimeRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
+            'teacher_id' => 'required|',
+            'day_id' => 'required|',
         ];
     }
 
@@ -37,7 +40,11 @@ class TimeRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'start_time.required' => 'يجب إدخال وقت البداية.',
+            'end_time.required' => 'يجب إدخال وقت الإنتهاء.',
+            'end_time.after' => 'يجب أن يكون وقت الإنتهاء بعد وقت البداية.',
+            'teacher_id.required' => 'يجب اختيار الاستاذ.',
+            'day_id.required' => 'يجب اختيار اليوم.',
         ];
     }
 
