@@ -73,6 +73,8 @@ class PerfectTimeCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        CRUD::setValidation(PerfectTimeRequest::class);
+
         CRUD::addField([
             'name' => 'start_time',
             'label' =>'وقت البداية',

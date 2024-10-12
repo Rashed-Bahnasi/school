@@ -54,6 +54,7 @@ class DayCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        CRUD::setValidation(DayRequest::class);
         CRUD::addField([
             'name' => 'name',
             'type'=> 'text',
