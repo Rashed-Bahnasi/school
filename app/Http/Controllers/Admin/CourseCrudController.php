@@ -117,7 +117,11 @@ class CourseCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CourseRequest::class);
-
+        CRUD::addField([
+            'name' => 'whatsapp_group',
+            'label' => 'مجموعة واتساب',
+            'type' => 'switch'
+        ]);
         CRUD::addField([
             'name' => 'name',
             'type'=> 'text',
@@ -156,12 +160,12 @@ class CourseCrudController extends CrudController
         ]);
         CRUD::addField([
             'name' => 'start_time',
-            'type'=> 'time',
+            'type'=> 'date',
             'label' => 'وقت البدء'
         ]);
         CRUD::addField([
             'name' => 'end_time',
-            'type'=> 'time',
+            'type'=> 'date',
             'label' => 'وقت الانتهاء'
         ]);
         CRUD::addField([
@@ -218,6 +222,9 @@ class CourseCrudController extends CrudController
             'type'=> 'select',
             'entity' => 'subject'
         ]);
+        
+
+
     }
 
     /**

@@ -35,9 +35,9 @@ class Specialization extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function teacher()
+    public function teachers()
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->hasMany(Teacher::class, 'specialization_id');
     }
     /*
     |--------------------------------------------------------------------------
