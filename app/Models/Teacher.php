@@ -11,8 +11,12 @@ class Teacher extends Model
     use CrudTrait;
     use HasFactory;
 
-    protected $fillable = ['name', 'specialization', 'available_times', 'notes'];
-
+    protected $table = 'teachers';
+    // protected $primaryKey = 'id';
+    // public $timestamps = false;
+    protected $guarded = ['id'];
+    protected $fillable = ['name', 'specialization_id', 'notes'];
+    // protected $hidden = [];
 
     public function courses()
     {
@@ -20,7 +24,7 @@ class Teacher extends Model
     }
     public function specializations()
     {
-        return $this->hasMany(Specialization::class);
+        return $this->belongsTo(Specialization::class, 'specialization_id');
     }
     public function times()
     {

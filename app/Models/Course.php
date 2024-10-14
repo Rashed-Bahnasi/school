@@ -30,4 +30,8 @@ class Course extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function organizer()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

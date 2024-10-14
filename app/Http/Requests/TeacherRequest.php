@@ -27,9 +27,7 @@ class TeacherRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'notes' => 'required|string',
-            'courses' => 'required', // Assuming courses are linked via ID
-            'start_time' => 'required|date_format:H:i', // Assuming time is in H:i format
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'specialization_id' => 'required', // Assuming courses are linked via ID
         ];
     }
 
@@ -53,10 +51,7 @@ class TeacherRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'اسم المعلم مطلوب.',
-            'start_time.required' => 'يجب إدخال وقت البداية.',
-            'end_time.required' => 'يجب إدخال وقت النهاية.',
-            'end_time.after' => 'يجب أن يكون وقت النهاية بعد وقت البداية.',
+            'name.required' => 'اسم المعلم مطلوب',
         ];
     }
 }

@@ -57,6 +57,23 @@ class TeacherCrudController extends CrudController
             'attribute' => 'name', 
             'model' => 'App\Models\Course',
             'pivot' => false,
+        ]);CRUD::addColumn([
+            'name' => 'courses', 
+            'label' => 'الكورسات', 
+            'type' => 'select', 
+            'entity' => 'courses', 
+            'attribute' => 'name', 
+            'model' => 'App\Models\Course',
+            'pivot' => false,
+        ]);
+        CRUD::addColumn([
+            'name' => 'specializations', 
+            'label' => 'التخصصات', 
+            'type' => 'select', 
+            'entity' => 'specializations', 
+            'attribute' => 'name', 
+            'model' => 'App\Models\Specializations',
+            'pivot' => false,
         ]);
         CRUD::addColumn([
             'name' => 'start_time', 
@@ -76,12 +93,6 @@ class TeacherCrudController extends CrudController
             'model' => 'App\Models\Time',
             'pivot' => false,
         ]);
-       
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
     }
 
     /**
@@ -111,11 +122,6 @@ class TeacherCrudController extends CrudController
              'type'=> 'select',
              'entity' => 'specializations'
         ]);
-        
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
     }
 
     /**
