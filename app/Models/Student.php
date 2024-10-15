@@ -50,10 +50,6 @@ class Student extends Model
     {
         return $this->belongsTo(Country::class);
     }
-    public function time()
-    {
-        return $this->hasMany(Time::class);
-    }
     public function day()
     {
         return $this->hasMany(Day::class);
@@ -61,6 +57,18 @@ class Student extends Model
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'course_student');
+    }
+
+
+
+    public function setPerfectTimesAttribute($value)
+    {
+        $this->attributes['perfect_times'] = json_encode($value);
+    }
+
+    public function getPerfectTimesAttribute($value)
+    {
+        return json_decode($value, true);
     }
     /*
     |--------------------------------------------------------------------------
