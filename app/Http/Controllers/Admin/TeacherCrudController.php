@@ -151,6 +151,12 @@ class TeacherCrudController extends CrudController
         //     'entity' => 'specializations'
         // ]);
         CRUD::field('specializations')->label('التخصص');
+            'name'=>'specialization_id',
+             'label'=> 'التخصصات',
+             'attribute'=>'name',
+             'type'=> 'select2',
+             'entity' => 'specializations'
+        ]);
     }
 
     /**

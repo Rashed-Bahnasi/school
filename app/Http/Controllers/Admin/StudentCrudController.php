@@ -140,6 +140,7 @@ class StudentCrudController extends CrudController
         CRUD::addField([
             'name' => 'phone',
             'type' => 'phone',
+            'type' => 'phone',
             'label' => 'رقم الهاتف'
         ]);
         CRUD::addField([

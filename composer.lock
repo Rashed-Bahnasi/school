@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "5c25de6550312af9c5fefcbe9e848895",
+=======
+    "content-hash": "dbeb16783d405075bdfaccdcf94a73d8",
+>>>>>>> origin/main
     "packages": [
         {
             "name": "backpack/basset",
@@ -188,7 +192,13 @@
             "type": "library",
             "extra": {
                 "laravel": {
+<<<<<<< HEAD
                     "providers": ["Backpack\\Pro\\AddonServiceProvider"]
+=======
+                    "providers": [
+                        "Backpack\\Pro\\AddonServiceProvider"
+                    ]
+>>>>>>> origin/main
                 }
             },
             "autoload": {
@@ -202,6 +212,7 @@
                 }
             },
             "scripts": {
+<<<<<<< HEAD
                 "test": ["vendor/bin/phpunit --testdox"]
             },
             "license": ["Proprietary"],
@@ -268,6 +279,15 @@
                 "test": ["vendor/bin/phpunit --testdox"]
             },
             "license": ["Proprietary"],
+=======
+                "test": [
+                    "vendor/bin/phpunit --testdox"
+                ]
+            },
+            "license": [
+                "Proprietary"
+            ],
+>>>>>>> origin/main
             "authors": [
                 {
                     "name": "Cristian Tabacitu",
