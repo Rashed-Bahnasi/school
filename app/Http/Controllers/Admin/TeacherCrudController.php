@@ -41,55 +41,47 @@ class TeacherCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'الاسم'
         ]);
         CRUD::addColumn([
             'name' => 'notes',
-            'type'=> 'textarea',
+            'type' => 'textarea',
             'label' => 'ملاحظات'
         ]);
         CRUD::addColumn([
-            'name' => 'courses', 
-            'label' => 'الكورسات', 
-            'type' => 'select', 
-            'entity' => 'courses', 
-            'attribute' => 'name', 
-            'model' => 'App\Models\Course',
-            'pivot' => false,
-        ]);CRUD::addColumn([
-            'name' => 'courses', 
-            'label' => 'الكورسات', 
-            'type' => 'select', 
-            'entity' => 'courses', 
-            'attribute' => 'name', 
+            'name' => 'courses',
+            'label' => 'الكورسات',
+            'type' => 'select',
+            'entity' => 'courses',
+            'attribute' => 'name',
             'model' => 'App\Models\Course',
             'pivot' => false,
         ]);
         CRUD::addColumn([
-            'name' => 'specializations', 
-            'label' => 'التخصصات', 
-            'type' => 'select', 
-            'entity' => 'specializations', 
-            'attribute' => 'name', 
+            'name' => 'specializations',
+            'label' => 'التخصص',
+            'type' => 'select',
+            'entity' => 'specializations',
+            'attribute' => 'name',
             'model' => 'App\Models\Specializations',
             'pivot' => false,
         ]);
         CRUD::addColumn([
-            'name' => 'start_time', 
+            'name' => 'start_time',
             'label' => 'وقت البداية',
-            'type' => 'select', 
-            'entity' => 'times', 
-            'attribute' => 'start_time', 
+            'type' => 'select',
+            'entity' => 'times',
+            'attribute' => 'start_time',
             'model' => 'App\Models\Time',
             'pivot' => false,
         ]);
         CRUD::addColumn([
-            'name' => 'end_time', 
+            'name' => 'end_time',
             'label' => 'وقت النهاية',
-            'type' => 'select', 
-            'entity' => 'times', 
-            'attribute' => 'end_time', 
+            'type' => 'select',
+            'entity' => 'times',
+            'attribute' => 'end_time',
             'model' => 'App\Models\Time',
             'pivot' => false,
         ]);
@@ -107,21 +99,58 @@ class TeacherCrudController extends CrudController
 
         CRUD::addField([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'الاسم'
         ]);
         CRUD::addField([
             'name' => 'notes',
-            'type'=> 'textarea',
+            'type' => 'textarea',
             'label' => 'ملاحظات'
         ]);
+
         CRUD::addField([
-            'name'=>'specialization_id',
-             'label'=> 'التخصصات',
-             'attribute'=>'name',
-             'type'=> 'select',
-             'entity' => 'specializations'
+            'name'  => 'available_times',
+            'label' => 'Available Times',
+            'type'  => 'repeatable',
+            'fields' => [
+                [
+                    'name'  => 'day',
+                    'type'  => 'select_from_array',
+                    'label' => 'Day',
+                    'options' => [
+                        'Monday'    => 'Monday',
+                        'Tuesday'   => 'Tuesday',
+                        'Wednesday' => 'Wednesday',
+                        'Thursday'  => 'Thursday',
+                        'Friday'    => 'Friday',
+                        'Saturday'  => 'Saturday',
+                        'Sunday'    => 'Sunday',
+                    ],
+                ],
+                [
+                    'name'  => 'start_time',
+                    'type'  => 'time',
+                    'label' => 'Start Time',
+                ],
+                [
+                    'name'  => 'end_time',
+                    'type'  => 'time',
+                    'label' => 'End Time',
+                ],
+            ],
+            'new_item_label' => 'Add another time', // Optional: Customize button text
+            'min_rows' => 1, // Minimum number of rows
+            'max_rows' => 10, // Optional: Maximum number of rows
         ]);
+
+        // CRUD::addField([
+        //     'name' => 'specialization_id',
+        //     'label' => 'التخصص',
+        //     'attribute' => 'name',
+        //     'type' => 'select',
+        //     'entity' => 'specializations'
+        // ]);
+        CRUD::field('specializations')->label('التخصص');
     }
 
     /**

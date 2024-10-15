@@ -39,10 +39,9 @@ class SpecializationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); 
         CRUD::addColumn([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'الاسم'
         ]);
     }
@@ -58,7 +57,7 @@ class SpecializationCrudController extends CrudController
         CRUD::setValidation(SpecializationRequest::class);
         CRUD::addField([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'الاسم'
         ]);
     }
