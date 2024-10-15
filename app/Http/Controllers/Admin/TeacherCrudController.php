@@ -119,7 +119,7 @@ class TeacherCrudController extends CrudController
             'name'=>'specialization_id',
              'label'=> 'التخصصات',
              'attribute'=>'name',
-             'type'=> 'select',
+             'type'=> 'select2',
              'entity' => 'specializations'
         ]);
     }
