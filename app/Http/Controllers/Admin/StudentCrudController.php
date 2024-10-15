@@ -80,11 +80,11 @@ class StudentCrudController extends CrudController
             'label' => 'العمر'
         ]);
         CRUD::addColumn([
-            'name'=>'country_id',
-           'label'=> 'البلد',
-           'attribute'=>'name',
-           'type'=> 'select2',
-           'entity' => 'country'
+            'name' => 'country_id',
+            'label' => 'البلد',
+            'attribute' => 'name',
+            'type' => 'select2',
+            'entity' => 'country'
 
         ]);
         // CRUD::column([
@@ -150,15 +150,48 @@ class StudentCrudController extends CrudController
         ]);
         // CRUD::addField('country')->label('البلد');
         CRUD::addField([
-            'name'=>'country_id',
-            'label'=> 'البلد',
-            'attribute'=>'name',
-            'type'=> 'select2',
+            'name' => 'country_id',
+            'label' => 'البلد',
+            'attribute' => 'name',
+            'type' => 'select2',
             'name' => 'country_id',
             'label' => 'البلد',
             'attribute' => 'name',
             'type' => 'select',
             'entity' => 'country'
+        ]);
+        CRUD::addField([
+            'name'      => 'perfect_times',
+            'label'     => 'الاوقات المتاحة',
+            'type'      => 'repeatable',
+            'subfields' => [
+                [
+                    'name' => 'day_id',
+                    'label' => 'اليوم',
+                    'attribute' => 'name',
+                    'type' => 'select2',
+                    'entity' => 'day',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+                [
+                    'name'    => 'start_time',
+                    'type'      => 'time',
+                    'label'     => 'بداية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+                [
+                    'name'    => 'end_time',
+                    'type'      => 'time',
+                    'label'     => 'نهاية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+            ],
         ]);
 
         CRUD::addField([
@@ -205,11 +238,11 @@ class StudentCrudController extends CrudController
     {
         $this->setupListOperation();
         $this->crud->addColumn([
-            'name' => 'courses', 
-            'label' => 'الكورسات', 
-            'type' => 'select2', 
-            'entity' => 'courses', 
-            'attribute' => 'name', 
+            'name' => 'courses',
+            'label' => 'الكورسات',
+            'type' => 'select2',
+            'entity' => 'courses',
+            'attribute' => 'name',
             'model' => 'App\Models\Course',
             'pivot' => false,
         ]);
@@ -232,6 +265,34 @@ class StudentCrudController extends CrudController
             'label' => 'تاريخ العودة المتوقع',
             'type' => 'date',
             'wrapper' => ['class' => 'form-group col-md-6'],
+        ]);
+        CRUD::addColumn([
+            'name'      => 'perfect_times',
+            'label'     => 'الاوقات المفضلة',
+            'type'      => 'repeatable',
+            'subfields' => [
+                [
+                    'name'       => 'day_id',
+                    'label'      => 'اليوم',
+                    'type'       => 'select2_from_array',
+                    'options'    => \App\Models\Day::pluck('name', 'id')->toArray(),
+
+                ],
+                [
+                    'name'    => 'start_time',
+                    'label'     => 'بداية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+                [
+                    'name'    => 'end_time',
+                    'label'     => 'نهاية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+            ],
         ]);
     }
 }
