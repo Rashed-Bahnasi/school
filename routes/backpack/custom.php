@@ -29,6 +29,7 @@ Route::group([
     Route::crud('employee', 'EmployeeCrudController');
     Route::crud('task', 'TaskCrudController');
     Route::crud('specialization', 'SpecializationCrudController');
+    Route::get('charts/chart-for-new-student', 'Charts\ChartForNewStudentChartController@response')->name('charts.chart-for-new-student.index');
 }); // this should be the absolute last line of this file
 
 /**
