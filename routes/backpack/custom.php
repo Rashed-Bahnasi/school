@@ -19,6 +19,7 @@ Route::group([
     Route::crud('teacher', 'TeacherCrudController');
     Route::crud('course', 'CourseCrudController');
     Route::get('dashboard', 'DashboardController@dashboard')->name('backpack.dashboard');
+    Route::get('course/{id}/change-status/{status}', 'CourseCrudController@changeStatus')->name('course.changeStatus');
 
     Route::crud('student', 'StudentCrudController');
     Route::crud('country', 'CountryCrudController');
