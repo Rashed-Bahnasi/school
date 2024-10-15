@@ -93,21 +93,21 @@ class CourseCrudController extends CrudController
             'name'=>'teacher_id',
             'label'=> 'الاستاذ',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'teacher'
         ]);
         CRUD::addColumn([
             'name'=>'student_id',
             'label'=> 'الطلاب',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'students'
         ]);
         CRUD::addColumn([
             'name'=>'subject_id',
             'label'=> 'المادة',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'subject'
         ]);
     }

@@ -53,14 +53,14 @@ class PerfectTimeCrudController extends CrudController
             'name'=>'student_id',
             'label'=> 'الطالب',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'student'
         ]);
         CRUD::addColumn([
             'name'=>'day_id',
             'label'=> 'اليوم',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'day'
         ]);
     }
@@ -89,14 +89,14 @@ class PerfectTimeCrudController extends CrudController
             'name'=>'student_id',
             'label'=> 'الطالب',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'student'
         ]);
         CRUD::addField([
             'name'=>'day_id',
             'label'=> 'اليوم',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'day'
         ]);
     }

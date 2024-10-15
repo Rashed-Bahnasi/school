@@ -15,7 +15,7 @@ class Teacher extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'specialization_id', 'notes'];
+    // protected $fillable = ['name', 'specialization_id', 'notes'];
     // protected $hidden = [];
 
     public function courses()
@@ -26,8 +26,17 @@ class Teacher extends Model
     {
         return $this->belongsTo(Specialization::class, 'specialization_id');
     }
-    public function times()
+    public function day(){
+        return $this->hasMany(Day::class);
+    }
+
+    public function setAvailableTimesAttribute($value)
     {
-        return $this->hasMany(Time::class);
+        $this->attributes['available_times'] = json_encode($value);
+    }
+
+    public function getAvailableTimesAttribute($value)
+    {
+        return json_decode($value, true);
     }
 }

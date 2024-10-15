@@ -54,14 +54,14 @@ class TimeCrudController extends CrudController
             'name'=>'teacher_id',
             'label'=> 'الاستاذ',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'teacher'
         ]);
         CRUD::addColumn([
             'name'=>'day_id',
             'label'=> 'اليوم',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'day'
         ]);
     }
@@ -90,14 +90,14 @@ class TimeCrudController extends CrudController
             'name'=>'teacher_id',
             'label'=> 'الاستاذ',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'teacher'
         ]);
         CRUD::addField([
             'name'=>'day_id',
             'label'=> 'اليوم',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'day'
         ]);
     }

@@ -65,7 +65,7 @@ class StudentCrudController extends CrudController
             'name'=>'country_id',
            'label'=> 'البلد',
            'attribute'=>'name',
-           'type'=> 'select',
+           'type'=> 'select2',
            'entity' => 'country'
         ]);
         CRUD::addColumn([
@@ -105,7 +105,7 @@ class StudentCrudController extends CrudController
             'name'=>'country_id',
             'label'=> 'البلد',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'country'
         ]);
         CRUD::addField([
@@ -159,7 +159,7 @@ class StudentCrudController extends CrudController
         $this->crud->addColumn([
         'name' => 'courses', 
             'label' => 'الكورسات', 
-            'type' => 'select', 
+            'type' => 'select2', 
             'entity' => 'courses', 
             'attribute' => 'name', 
             'model' => 'App\Models\Course',
