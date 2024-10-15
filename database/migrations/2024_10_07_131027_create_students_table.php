@@ -1,5 +1,7 @@
 <?php
 
+use App\Constants\StudentConstants;
+use App\Models\Student;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('age');
             $table->string('phone')->unique();
-            $table->enum('status', ['active', 'potential', 'inactive', 'withdrawn']);
+            $table->enum('status', Student::STATUS);
             $table->timestamps();
         });
     }

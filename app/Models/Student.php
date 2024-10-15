@@ -25,6 +25,16 @@ class Student extends Model
     protected $fillable = [];
     // protected $hidden = [];
 
+
+    // Enum values for status
+    public const STATUS = [
+        'active'    => 'نشط',
+        'inactive'  => 'متوقف',
+        'potential' => 'محتمل',
+        'withdrawn' => 'منسحب',
+    ];
+
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -36,13 +46,16 @@ class Student extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function country(){
+    public function country()
+    {
         return $this->belongsTo(Country::class);
     }
-    public function time(){
+    public function time()
+    {
         return $this->hasMany(Time::class);
     }
-    public function day(){
+    public function day()
+    {
         return $this->hasMany(Day::class);
     }
     public function courses()
