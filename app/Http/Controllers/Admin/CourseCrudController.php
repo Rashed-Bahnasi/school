@@ -6,6 +6,9 @@ use App\Http\Requests\CourseRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\Student;
+use App\Models\Course;
+use Prologue\Alerts\Facades\Alert;
+
 
 /**
  * Class CourseCrudController
@@ -40,6 +43,7 @@ class CourseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::addButtonFromView('line', 'courseStatus', 'course_status', 'beginning');
         CRUD::addColumn([
             'name' => 'name',
             'type'=> 'text',
@@ -77,7 +81,7 @@ class CourseCrudController extends CrudController
         ]);
         CRUD::addColumn([
             'name' => 'status',
-            'type'=> 'text',
+            'type'=> 'check',
             'label' => 'الحالة'
         ]);
         CRUD::addColumn([
@@ -203,13 +207,13 @@ class CourseCrudController extends CrudController
            'name'=>'teacher_id',
             'label'=> 'الاستاذ',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'teacher'
        ]);
-       CRUD::addField([
+        CRUD::addField([
             'name' => 'students',
             'label' => 'الطلاب',
-            'type' => 'select_multiple',
+            'type' => 'select2_multiple',
             'entity' => 'students', 
             'attribute' => 'name', 
             'model' => Student::class, 
@@ -219,14 +223,22 @@ class CourseCrudController extends CrudController
             'name'=>'subject_id',
             'label'=> 'المادة',
             'attribute'=>'name',
-            'type'=> 'select',
+            'type'=> 'select2',
             'entity' => 'subject'
         ]);
         
 
 
     }
-
+    public function changeStatus($id, $status)
+    {
+        $course = Course::findOrFail($id);
+        $course->status = $status;
+        $course->save();
+    
+        Alert::success('تم تغيير الحالة بنجاح')->flash();
+        return redirect()->back();
+    }
     /**
      * Define what happens when the Update operation is loaded.
      * 
@@ -241,4 +253,5 @@ class CourseCrudController extends CrudController
     {
         $this->setupListOperation();
     }
+    
 }
