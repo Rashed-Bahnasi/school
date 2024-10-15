@@ -28,7 +28,7 @@ class SubjectCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Subject::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/subject');
-        CRUD::setEntityNameStrings('subject', 'subjects');
+        CRUD::setEntityNameStrings('المادة', 'المواد');
     }
 
     /**
@@ -39,12 +39,11 @@ class SubjectCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'اسم المادة'
+        ]);
     }
 
     /**
@@ -56,12 +55,11 @@ class SubjectCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SubjectRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
-
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
+        CRUD::addField([
+            'name' => 'name',
+            'type'=> 'text',
+            'label' => 'اسم المادة'
+        ]);
     }
 
     /**

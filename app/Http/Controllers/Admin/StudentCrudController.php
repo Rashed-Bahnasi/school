@@ -80,11 +80,12 @@ class StudentCrudController extends CrudController
             'label' => 'العمر'
         ]);
         CRUD::addColumn([
-            'name' => 'country_id',
-            'label' => 'البلد',
-            'attribute' => 'name',
-            'type' => 'select',
-            'entity' => 'country'
+            'name'=>'country_id',
+           'label'=> 'البلد',
+           'attribute'=>'name',
+           'type'=> 'select2',
+           'entity' => 'country'
+
         ]);
         // CRUD::column([
         //     'name' => 'status',
@@ -149,6 +150,10 @@ class StudentCrudController extends CrudController
         ]);
         // CRUD::addField('country')->label('البلد');
         CRUD::addField([
+            'name'=>'country_id',
+            'label'=> 'البلد',
+            'attribute'=>'name',
+            'type'=> 'select2',
             'name' => 'country_id',
             'label' => 'البلد',
             'attribute' => 'name',
@@ -200,11 +205,11 @@ class StudentCrudController extends CrudController
     {
         $this->setupListOperation();
         $this->crud->addColumn([
-            'name' => 'courses',
-            'label' => 'الكورسات',
-            'type' => 'select',
-            'entity' => 'courses',
-            'attribute' => 'name',
+            'name' => 'courses', 
+            'label' => 'الكورسات', 
+            'type' => 'select2', 
+            'entity' => 'courses', 
+            'attribute' => 'name', 
             'model' => 'App\Models\Course',
             'pivot' => false,
         ]);

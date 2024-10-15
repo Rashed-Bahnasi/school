@@ -46,7 +46,7 @@ class TaskCrudController extends CrudController
         ]);
         CRUD::addColumn([
             'name' => 'assigned_employee_id',
-            'type' => 'select',
+            'type' => 'select2',
             'label' => 'الموظف المسؤول',
             'entity' => 'employee',
             'model' => "App\Models\Employee",
@@ -82,7 +82,7 @@ class TaskCrudController extends CrudController
         
         CRUD::addField([
             'name' => 'assigned_employee_id',
-            'type' => 'select',
+            'type' => 'select2',
             'label' => 'الموظف المسؤول',
             'entity' => 'employee',
             'model' => "App\Models\Employee",

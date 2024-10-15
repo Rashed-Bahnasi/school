@@ -24,7 +24,6 @@ Route::group([
     Route::crud('student', 'StudentCrudController');
     Route::crud('country', 'CountryCrudController');
     Route::crud('day', 'DayCrudController');
-    Route::crud('time', 'TimeCrudController');
     Route::crud('perfect-time', 'PerfectTimeCrudController');
     Route::crud('subject', 'SubjectCrudController');
     Route::crud('employee', 'EmployeeCrudController');

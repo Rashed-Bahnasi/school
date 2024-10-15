@@ -50,11 +50,11 @@ class TeacherCrudController extends CrudController
             'label' => 'ملاحظات'
         ]);
         CRUD::addColumn([
-            'name' => 'courses',
-            'label' => 'الكورسات',
-            'type' => 'select',
-            'entity' => 'courses',
-            'attribute' => 'name',
+            'name' => 'courses', 
+            'label' => 'الكورسات', 
+            'type' => 'select2', 
+            'entity' => 'courses', 
+            'attribute' => 'name', 
             'model' => 'App\Models\Course',
             'pivot' => false,
         ]);
@@ -65,24 +65,6 @@ class TeacherCrudController extends CrudController
             'entity' => 'specializations',
             'attribute' => 'name',
             'model' => 'App\Models\Specializations',
-            'pivot' => false,
-        ]);
-        CRUD::addColumn([
-            'name' => 'start_time',
-            'label' => 'وقت البداية',
-            'type' => 'select',
-            'entity' => 'times',
-            'attribute' => 'start_time',
-            'model' => 'App\Models\Time',
-            'pivot' => false,
-        ]);
-        CRUD::addColumn([
-            'name' => 'end_time',
-            'label' => 'وقت النهاية',
-            'type' => 'select',
-            'entity' => 'times',
-            'attribute' => 'end_time',
-            'model' => 'App\Models\Time',
             'pivot' => false,
         ]);
     }
@@ -114,6 +96,39 @@ class TeacherCrudController extends CrudController
             'type' => 'select',
             'entity' => 'specializations'
         ]);
+        CRUD::addField([
+            'name'      => 'available_times',
+            'label'     => 'الاوقات المتاحة',
+            'type'      => 'repeatable',
+            'subfields' => [
+                [
+                    'name'=>'day_id',
+                    'label'=> 'اليوم',
+                    'attribute'=>'name',
+                    'type'=> 'select2',
+                    'entity' => 'day',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+                [
+                    'name'    => 'start_time',
+                    'type'      => 'time',
+                    'label'     => 'بداية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+                [
+                    'name'    => 'end_time',
+                    'type'      => 'time',
+                    'label'     => 'نهاية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -129,5 +144,34 @@ class TeacherCrudController extends CrudController
     protected function setupShowOperation()
     {
         $this->setupListOperation();
+
+        CRUD::addColumn([
+            'name'      => 'available_times',
+            'label'     => 'الاوقات المتاحة',
+            'type'      => 'repeatable',
+            'subfields' => [
+                [
+                    'name'       => 'day_id',
+                    'label'      => 'اليوم',
+                    'type'       => 'select2_from_array',
+                    'options'    => \App\Models\Day::pluck('name', 'id')->toArray(),
+                    
+                ],
+                [
+                    'name'    => 'start_time',
+                    'label'     => 'بداية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+                [
+                    'name'    => 'end_time',
+                    'label'     => 'نهاية الوقت',
+                    'wrapper' => [
+                        'class' => 'col-md-3',
+                    ],
+                ],
+            ],
+        ]);
     }
 }
