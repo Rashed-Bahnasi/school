@@ -147,14 +147,14 @@ class StudentCrudController extends CrudController
             'type' => 'text',
             'label' => 'العمر'
         ]);
-        CRUD::addField('country')->label('البلد');
-        // CRUD::addField([
-        //     'name' => 'country_id',
-        //     'label' => 'البلد',
-        //     'attribute' => 'name',
-        //     'type' => 'select',
-        //     'entity' => 'country'
-        // ]);
+        // CRUD::addField('country')->label('البلد');
+        CRUD::addField([
+            'name' => 'country_id',
+            'label' => 'البلد',
+            'attribute' => 'name',
+            'type' => 'select',
+            'entity' => 'country'
+        ]);
 
         CRUD::addField([
             'name' => 'status',

@@ -107,50 +107,13 @@ class TeacherCrudController extends CrudController
             'type' => 'textarea',
             'label' => 'ملاحظات'
         ]);
-
         CRUD::addField([
-            'name'  => 'available_times',
-            'label' => 'Available Times',
-            'type'  => 'repeatable',
-            'fields' => [
-                [
-                    'name'  => 'day',
-                    'type'  => 'select_from_array',
-                    'label' => 'Day',
-                    'options' => [
-                        'Monday'    => 'Monday',
-                        'Tuesday'   => 'Tuesday',
-                        'Wednesday' => 'Wednesday',
-                        'Thursday'  => 'Thursday',
-                        'Friday'    => 'Friday',
-                        'Saturday'  => 'Saturday',
-                        'Sunday'    => 'Sunday',
-                    ],
-                ],
-                [
-                    'name'  => 'start_time',
-                    'type'  => 'time',
-                    'label' => 'Start Time',
-                ],
-                [
-                    'name'  => 'end_time',
-                    'type'  => 'time',
-                    'label' => 'End Time',
-                ],
-            ],
-            'new_item_label' => 'Add another time', // Optional: Customize button text
-            'min_rows' => 1, // Minimum number of rows
-            'max_rows' => 10, // Optional: Maximum number of rows
+            'name' => 'specialization_id',
+            'label' => 'التخصص',
+            'attribute' => 'name',
+            'type' => 'select',
+            'entity' => 'specializations'
         ]);
-
-        // CRUD::addField([
-        //     'name' => 'specialization_id',
-        //     'label' => 'التخصص',
-        //     'attribute' => 'name',
-        //     'type' => 'select',
-        //     'entity' => 'specializations'
-        // ]);
-        CRUD::field('specializations')->label('التخصص');
     }
 
     /**
