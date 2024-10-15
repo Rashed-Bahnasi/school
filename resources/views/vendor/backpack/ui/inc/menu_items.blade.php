@@ -4,7 +4,6 @@
 <x-backpack::menu-dropdown title="الاساتذة" icon="las la-clinic-medical" :withColumns="true">
         <x-theme-tabler::menu-dropdown-column>
                 <x-backpack::menu-dropdown-item title="الاساتذة" icon="las la-chalkboard-teacher" :link="backpack_url('teacher')" />
-                <x-backpack::menu-dropdown-item title="الاوقات المتاحة للاستاذ" icon="las la-clock" :link="backpack_url('time')" />
                 <x-backpack::menu-dropdown-item title="التخصصات" icon="las la-shield-alt" :link="backpack_url('specialization')" />
         </x-theme-tabler::menu-dropdown-column>
 </x-backpack::menu-dropdown>
