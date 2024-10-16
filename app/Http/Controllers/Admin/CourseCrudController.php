@@ -105,11 +105,11 @@ class CourseCrudController extends CrudController
             'options' => Course::STATUS,
             'function' => function ($entry) {
                 switch ($entry->status) {
-                    case 'completed':
-                        return '<i class="bi bi-check-circle-fill text-success" title="نشط"></i>';
-                    case 'inactive':
-                        return '<i class="bi bi-slash-circle text-secondary" title="غير نشط"></i>';
                     case 'active':
+                        return '<i class="bi bi-check-circle-fill text-success" title="نشط"></i>';
+                    case 'completed':
+                        return '<i class="bi bi-slash-circle text-secondary" title="غير نشط"></i>';
+                    case 'inactive':
                         return '<i class="bi bi-hourglass-split text-info" title="مكتمل"></i>';
                     default:
                         return '<i class="bi bi-question-circle-fill text-dark" title="غير معروف"></i>';
