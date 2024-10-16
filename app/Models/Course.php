@@ -18,6 +18,14 @@ class Course extends Model
     // protected $fillable = [];
     // protected $hidden = [];
 
+
+    // Enum values for status
+    public const STATUS = [
+        'active'    => 'نشط',
+        'inactive'  => 'متوقف',
+        'completed' => 'مكتمل',
+    ];
+
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
