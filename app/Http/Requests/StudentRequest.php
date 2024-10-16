@@ -29,7 +29,7 @@ class StudentRequest extends FormRequest
         return [
             'name' => 'required|min:5|max:255',
             'age' => 'required|min:2|max:3',
-            'phone' => 'required|unique:students,phone',
+            'phone' => 'required|',
 
         ];
     }
