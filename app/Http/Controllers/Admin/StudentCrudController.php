@@ -87,17 +87,6 @@ class StudentCrudController extends CrudController
             'entity' => 'country'
 
         ]);
-        // CRUD::column([
-        //     'name' => 'status',
-        //     'wrapper' => ['class' => function ($crud, $column, $entry) {
-        //         return match ($entry->status) {
-        //             "active" => "badge bg-succuss",
-        //             "potential" => "badge bg-warning",
-        //             "inactive" => "badge bg-secondary",
-        //             "withdrawn" => "badge bg-danger",
-        //         };
-        //     }]
-        // ]);
 
         CRUD::addColumn([
             'name' => 'status',
@@ -106,15 +95,15 @@ class StudentCrudController extends CrudController
             'function' => function ($entry) {
                 switch ($entry->status) {
                     case 'active':
-                        return '<span class="badge badge-success">نشط</span>';
+                        return '<i class="bi bi-check-circle-fill text-success" title="نشط"></i>';
                     case 'potential':
-                        return '<span class="badge badge-warning">محتمل</span>';
+                        return '<i class="bi bi-star-fill text-warning" title="محتمل"></i>';
                     case 'inactive':
-                        return '<span class="badge badge-secondary">غير نشط</span>';
+                        return '<i class="bi bi-slash-circle text-secondary" title="غير نشط"></i>';
                     case 'withdrawn':
-                        return '<span class="badge badge-danger">منسحب</span>';
+                        return '<i class="bi bi-x-circle-fill text-danger" title="منسحب"></i>';
                     default:
-                        return '<span class="badge badge-dark">غير معروف</span>';
+                        return '<i class="bi bi-question-circle-fill text-dark" title="غير معروف"></i>';
                 }
             },
             'escaped' => false, // Important to allow HTML

@@ -30,7 +30,7 @@ class CourseCrudController extends CrudController
      */
     public function setup()
     {
-         $this->crud->setModel(\App\Models\Course::class);
+        $this->crud->setModel(\App\Models\Course::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/course');
         $this->crud->setEntityNameStrings('course', 'courses');
     }
@@ -41,73 +41,106 @@ class CourseCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
+
+
+    protected function addStatusFilter()
+    {
+        CRUD::addFilter(
+            [
+                'name'  => 'status_filter',
+                'type'  => 'dropdown',
+                'label' => 'حالة الكورس',
+            ],
+            Course::STATUS,
+            function ($value) {
+                CRUD::addClause('where', 'status', $value);
+            }
+        );
+    }
+
     protected function setupListOperation()
     {
-        CRUD::addButtonFromView('line', 'courseStatus', 'course_status', 'beginning');
+        $this->addStatusFilter();
+        CRUD::addButtonFromView('line', 'status', 'course_status', 'end');
         CRUD::addColumn([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'الاسم'
         ]);
         CRUD::addColumn([
             'name' => 'type',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'النوع'
         ]);
         CRUD::addColumn([
             'name' => 'number_of_lessons',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'عدد جلسات الكورس'
         ]);
         CRUD::addColumn([
             'name' => 'start_time',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'وقت البدء'
         ]);
         CRUD::addColumn([
             'name' => 'end_time',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'وقت الانتهاء'
         ]);
         CRUD::addColumn([
             'name' => 'max_number_of_students',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'اكثر عدد طلاب ممكن'
         ]);
         CRUD::addColumn([
             'name' => 'min_number_of_students',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'اقل عدد طلاب ممكن'
         ]);
+
         CRUD::addColumn([
             'name' => 'status',
-            'type'=> 'check',
-            'label' => 'الحالة'
+            'type' => 'closure',
+            'label' => 'الحالة',
+            'options' => Course::STATUS,
+            'function' => function ($entry) {
+                switch ($entry->status) {
+                    case 'completed':
+                        return '<i class="bi bi-check-circle-fill text-success" title="نشط"></i>';
+                    case 'inactive':
+                        return '<i class="bi bi-slash-circle text-secondary" title="غير نشط"></i>';
+                    case 'active':
+                        return '<i class="bi bi-hourglass-split text-info" title="مكتمل"></i>';
+                    default:
+                        return '<i class="bi bi-question-circle-fill text-dark" title="غير معروف"></i>';
+                }
+            },
+            'escaped' => false,
         ]);
         CRUD::addColumn([
             'name' => 'course_duration',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'مدة الكورس'
         ]);
         CRUD::addColumn([
-            'name'=>'teacher_id',
-            'label'=> 'الاستاذ',
-            'attribute'=>'name',
-            'type'=> 'select2',
+            'name' => 'teacher_id',
+            'label' => 'الاستاذ',
+            'attribute' => 'name',
+            'type' => 'select2',
             'entity' => 'teacher'
         ]);
         CRUD::addColumn([
-            'name'=>'student_id',
-            'label'=> 'الطلاب',
-            'attribute'=>'name',
-            'type'=> 'select2',
+            'name' => 'student_id',
+            'label' => 'الطلاب',
+            'attribute' => 'name',
+            'type' => 'select2',
             'entity' => 'students'
         ]);
         CRUD::addColumn([
-            'name'=>'subject_id',
-            'label'=> 'المادة',
-            'attribute'=>'name',
-            'type'=> 'select2',
+            'name' => 'subject_id',
+            'label' => 'المادة',
+            'attribute' => 'name',
+            'type' => 'select2',
             'entity' => 'subject'
         ]);
     }
@@ -128,23 +161,23 @@ class CourseCrudController extends CrudController
         ]);
         CRUD::addField([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'الاسم'
         ]);
         $this->crud->addField([
             'name' => 'status',
             'label' => 'الحالة',
-            'type' => 'select_from_array', 
+            'type' => 'select_from_array',
             'options' => [
                 'active' => 'فعال',
                 'inactive' => 'متوقف',
                 'completed' => 'منتهي',
-            ], 
-            'allows_null' => false, 
+            ],
+            'allows_null' => false,
             'default' => 'active',
         ]);
         $this->crud->addField([
-            'name' => 'type', 
+            'name' => 'type',
             'label' => 'النوع',
             'type' => 'select_from_array',
             'options' => [
@@ -164,28 +197,28 @@ class CourseCrudController extends CrudController
         ]);
         CRUD::addField([
             'name' => 'start_time',
-            'type'=> 'date',
+            'type' => 'date',
             'label' => 'وقت البدء'
         ]);
         CRUD::addField([
             'name' => 'end_time',
-            'type'=> 'date',
+            'type' => 'date',
             'label' => 'وقت الانتهاء'
         ]);
         CRUD::addField([
             'name' => 'max_number_of_students',
-            'type'=> 'number',
+            'type' => 'number',
             'label' => 'أقصى عدد طلاب ممكن',
             'attributes' => [
                 'min' => 3,
-                'step' => 1, 
+                'step' => 1,
             ],
-            'suffix' => 'طلاب', 
+            'suffix' => 'طلاب',
         ]);
-        
+
         CRUD::addField([
             'name' => 'min_number_of_students',
-            'type'=> 'number', 
+            'type' => 'number',
             'label' => 'أقل عدد طلاب ممكن',
             'attributes' => [
                 'min' => 1,
@@ -204,38 +237,35 @@ class CourseCrudController extends CrudController
             'suffix' => 'minuets',
         ]);
         CRUD::addField([
-           'name'=>'teacher_id',
-            'label'=> 'الاستاذ',
-            'attribute'=>'name',
-            'type'=> 'select2',
+            'name' => 'teacher_id',
+            'label' => 'الاستاذ',
+            'attribute' => 'name',
+            'type' => 'select2',
             'entity' => 'teacher'
-       ]);
+        ]);
         CRUD::addField([
             'name' => 'students',
             'label' => 'الطلاب',
             'type' => 'select2_multiple',
-            'entity' => 'students', 
-            'attribute' => 'name', 
-            'model' => Student::class, 
+            'entity' => 'students',
+            'attribute' => 'name',
+            'model' => Student::class,
             'pivot' => true,
         ]);
         CRUD::addField([
-            'name'=>'subject_id',
-            'label'=> 'المادة',
-            'attribute'=>'name',
-            'type'=> 'select2',
+            'name' => 'subject_id',
+            'label' => 'المادة',
+            'attribute' => 'name',
+            'type' => 'select2',
             'entity' => 'subject'
         ]);
-        
-
-
     }
     public function changeStatus($id, $status)
     {
         $course = Course::findOrFail($id);
         $course->status = $status;
         $course->save();
-    
+
         Alert::success('تم تغيير الحالة بنجاح')->flash();
         return redirect()->back();
     }
@@ -253,5 +283,4 @@ class CourseCrudController extends CrudController
     {
         $this->setupListOperation();
     }
-    
 }

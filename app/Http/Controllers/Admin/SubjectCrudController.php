@@ -41,8 +41,18 @@ class SubjectCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'اسم المادة'
+        ]);
+        CRUD::addColumn([
+            'name' => 'level',
+            'type' => 'text',
+            'label' => "المستوى"
+        ]);
+        CRUD::addColumn([
+            'name' => 'stage',
+            'type' => 'text',
+            'label' => 'المرحلة '
         ]);
     }
 
@@ -57,8 +67,19 @@ class SubjectCrudController extends CrudController
         CRUD::setValidation(SubjectRequest::class);
         CRUD::addField([
             'name' => 'name',
-            'type'=> 'text',
+            'type' => 'text',
             'label' => 'اسم المادة'
+        ]);
+
+        CRUD::addField([
+            'name' => 'level',
+            'type' => 'text',
+            'label' => "المستوى"
+        ]);
+        CRUD::addField([
+            'name' => 'stage',
+            'type' => 'text',
+            'label' => 'المرحلة '
         ]);
     }
 

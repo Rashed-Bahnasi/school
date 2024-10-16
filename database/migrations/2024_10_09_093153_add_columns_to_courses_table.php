@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::table('courses', function (Blueprint $table) {
             $table->unsignedTinyInteger('max_number_of_students');
             $table->unsignedTinyInteger('min_number_of_students');
-            $table->enum('status', ['active', 'inactive', 'completed']);
+            $table->enum('status', Course::STATUS);
 
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
