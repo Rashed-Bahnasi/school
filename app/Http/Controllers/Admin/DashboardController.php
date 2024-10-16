@@ -43,6 +43,11 @@ class DashboardController extends Controller
         
             ],
         ]);
+        Widget::add([
+            'type' => 'chart',
+            'controller' => \App\Http\Controllers\Admin\Charts\ChartForNewStudentChartController::class,
+            'wrapper' => ['class' => 'col-12'],
+        ])->to('before_content');
         return View::make('dashboard')->render();
     }
 }
